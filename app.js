@@ -57,7 +57,7 @@ var TruckSchema = new schema({
 
 var User = mongoose.model('users', UserSchema);
 var Bucket = mongoose.model('buckets', BucketSchema);
-var GoodsSchema = mongoose.model('goods', GoodsSchema);
+var Goods = mongoose.model('goods', GoodsSchema);
 var Truck = mongoose.model('trucks', TruckSchema);
 
 
@@ -79,7 +79,7 @@ require('./routes/auth.js')(app, User, randomString);
 require('./routes/bucket.js')(app, User, Bucket);
 require('./routes/gps.js')(app, Truck, User);
 require('./routes/pay.js')(app, User);
-require('./routes/truck.js')(app, Truck);
+require('./routes/truck.js')(app, Truck, Goods, randomString);
 require('./routes/users.js')(app, User);
 
 

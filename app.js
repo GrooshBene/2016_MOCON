@@ -24,11 +24,16 @@ var UserSchema = new schema({
 		type : String,
 		ref : 'buckets'
 	}],
-	payment_info : Object
+	payment_info : Object,
+	location : Object
 });
 
 var BucketSchema = new schema({
 	_id : String,
+	user : {
+		type : String,
+		ref : 'users'
+	},
 	content : [{
 		type : String,
 		ref : 'goods'
@@ -52,7 +57,8 @@ var TruckSchema = new schema({
 	goods : [{
 		type : String,
 		ref : 'goods'
-	}]
+	}],
+	location : Object
 });
 
 var User = mongoose.model('users', UserSchema);

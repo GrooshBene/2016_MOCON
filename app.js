@@ -45,9 +45,20 @@ var GoodsSchema = new schema({
 
 var TruckSchema = new schema({
 	_id : String,
+	name : String,
 	goods_type : String,
+	inapp_purchase : Number,
+	credit_purchase : Number,
+	goods : [{
+		type : String,
+		ref : 'goods'
+	}]
+});
 
-})
+var User = mongoose.model('users', UserSchema);
+var Bucket = mongoose.model('buckets', BucketSchema);
+var GoodsSchema = mongoose.model('goods', GoodsSchema);
+var Truck = mongoose.model('trucks', TruckSchema);
 
 
 
@@ -64,13 +75,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 
-require('./routes/auth.js');
-require('./routes/bucket.js');
-require('./routes/gps.js');
-require('./routes/market.js');
-require('./routes/pay.js');
-require('./routes/truck.js');
-require('./routes/users.js');
+require('./routes/auth.js')(app, User);
+require('./routes/bucket.js')(app, User, Bucket);
+require('./routes/gps.js')(app, Truck, User);
+require('./routes/pay.js')(app, User);
+require('./routes/truck.js')(app, Truck);
+require('./routes/users.js')(app, User);
 
 
 /// catch 404 and forwarding to error handler

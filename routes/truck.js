@@ -1,4 +1,4 @@
-function init(app){
+function init(app, Truck){
 
 }
 module.exports = init;

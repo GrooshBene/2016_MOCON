@@ -16,7 +16,7 @@ function init(app, User, Bucket){
 	});
 
 	app.post('/bucket/update', function(req, res){
-		Bucket.findOneAndUpdate({_id : req.param('bucket_id')}, {$push : {"content" : req.param('content')}} , function(err, result){
+		Bucket.findOneAndUpdate({_id : req.param('bucket_id')}, {"content" : req.param('content')} , function(err, result){
 			if(err){
 				console.log(err);
 				res.send(401, "/bucket/update DB Update Error");

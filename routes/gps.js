@@ -1,6 +1,5 @@
 function init(app, Truck, User){
 	app.io = require('socket.io');
-	app.post('/gps/track', function(req, res){
 		io.on('connection', function(socket){
 			socket.on('truck_location', function(data){
 				Truck.findOneAndUpdate({_id : req.param('id')}, {location : data}, function(err, result){
@@ -34,6 +33,5 @@ function init(app, Truck, User){
 				});
 			});
 		});
-	});
 }
 module.exports = init;

@@ -57,7 +57,8 @@ function init(app, Truck, Goods){
 			goods_type : req.param('type'),
 			inapp_purchase : req.param('inapp_purchase'),
 			credit_purchase : req.param('credit_purchase'),
-			goods : []
+			goods : [],
+			location : {}
 		});
 		truck.save(function(err){
 			if(err){

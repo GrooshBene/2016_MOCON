@@ -17,7 +17,7 @@ function init(app, User, Bucket){
 	});
 
 	app.post('/bucket/update', function(req, res){
-		Bucket.findOneAndUpdate({_id : req.param('bucket_id')}, {"content" : req.param('content')} , function(err, result){
+		Bucket.findOneAndUpdate({_id : req.param('bucket_id')}, {"content" : req.param('content')} , {new : true}, function(err, result){
 			if(err){
 				console.log(err);
 				res.send(401, "/bucket/update DB Update Error");
@@ -27,7 +27,7 @@ function init(app, User, Bucket){
 	});
 
 	app.post('/bucket/info', function(req, res){
-		Bucket.findOne({_id : req.param('bucket_id')}).populate('content', 'user').exec(function(err, result){
+		Bucket.findOne({_id : req.param('bucket_id')}).populate('content').populate('user').exec(function(err, result){
 			if(err){
 				console.log(err);
 				res.send(401, "/bucket/info DB Searching Error");
@@ -37,7 +37,7 @@ function init(app, User, Bucket){
 	});
 
 	app.post('/bucket/destroy', function(req,res){
-		User.findOneAndUpdate({_id : "user_id"}, {bucket : "", $push : {purchase_history : req.param('bucket_id')}}).exec(function(err, result){
+		User.findOneAndUpdate({_id : req.param('user_id')}, {$push : {purchase_history : req.param('bucket_id')}}, {new : true}).exec(function(err, result){
 			if(err){
 				console.log(err);
 				res.send(401, "/bucket/destroy DB Updating Error");

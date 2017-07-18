@@ -8,7 +8,7 @@ function init(app, Market){
 		}
 	});
 
-	app.post('/market/add', upload('thumbnail', 5), function(req, res){
+	app.post('/market/add', upload.array('thumbnail', 5), function(req, res){
 		var market = new Market({
 			_id : randomString.generate(15),
 			name : req.param('name'),

@@ -1,6 +1,6 @@
 function init(app, Truck, User){
-	app.io = require('socket.io');
-		io.on('connection', function(socket){
+	app.io = require('socket.io')();
+		app.io.on('connection', function(socket){
 			socket.on('truck_location', function(data){
 				Truck.findOneAndUpdate({_id : req.param('id')}, {location : data}, function(err, result){
 					if(err){

@@ -11,7 +11,7 @@ function init(app, Truck, Goods){
 			_id : randomString.generate(15),
 			name : req.param('name'),
 			truck : req.param('truck_id'),
-			thumbnail : "/images/" + req.files[0].filename',
+			thumbnail : "/images/" + req.files[0].filename,
 			description : req.param('description'),
 			price : req.param('price')
 		});

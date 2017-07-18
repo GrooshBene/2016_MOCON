@@ -25,7 +25,7 @@ function init(app, User, Bucket){
 		});
 	});
 
-	app.post('/bucket/info', function(req. res){
+	app.post('/bucket/info', function(req, res){
 		Bucket.findOne({_id : req.param('bucket_id')}).populate('content', 'user').exec(function(err, result){
 			if(err){
 				console.log(err);

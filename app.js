@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var randomString = require('randomString');
+var randomString = require('randomstring');
 var schema = mongoose.Schema;
 
 var routes = require('./routes/index');
@@ -26,6 +26,16 @@ var UserSchema = new schema({
 	}],
 	payment_info : Object,
 	location : Object
+});
+
+var MarketSchema = new schema({
+	_id : String,
+	name : String,
+	location : Object,
+	goods_type : String,
+	open_type : String,
+	parking_lot : Number,
+	toilet : Number
 });
 
 var BucketSchema = new schema({
@@ -61,11 +71,18 @@ var TruckSchema = new schema({
 	location : Object
 });
 
+mongoose.connect("mongodb://localhost:27017/mocon", function(err){
+	if(err){
+		throw err;
+	}
+	console.log("DB Server Connect Success");
+})
+
 var User = mongoose.model('users', UserSchema);
 var Bucket = mongoose.model('buckets', BucketSchema);
 var Goods = mongoose.model('goods', GoodsSchema);
 var Truck = mongoose.model('trucks', TruckSchema);
-
+var Market = mongoose.model('markets', MarketSchema);
 
 
 // view engine setup
@@ -87,6 +104,7 @@ require('./routes/gps.js')(app, Truck, User);
 require('./routes/pay.js')(app, User);
 require('./routes/truck.js')(app, Truck, Goods, randomString);
 require('./routes/users.js')(app, User);
+require('./routes/market.js')(app, Market);
 
 
 /// catch 404 and forwarding to error handler

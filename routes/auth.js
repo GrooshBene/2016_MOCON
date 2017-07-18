@@ -12,8 +12,8 @@ function init(app, User, randomString){
 	});
 
 	passport.use(new FacebookTokenStrategy({
-		clientID : "",
-		clientSecret : ""
+		clientID : "154408675125421",
+		clientSecret : "68edaefd6224963cd8defe795c0c6d3b"
 	}, function(accessToken, refreshToken, profile, done){
 		console.log(profile);
 		User.findOne({

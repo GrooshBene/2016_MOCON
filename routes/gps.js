@@ -1,5 +1,5 @@
 function init(app, Truck, User){
-	var socket = require('socket.io')(app);
+	app.io = require('socket.io');
 	app.post('/gps/track', function(req, res){
 		io.on('connection', function(socket){
 			socket.on('truck_location', function(data){

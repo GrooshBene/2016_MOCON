@@ -2,7 +2,7 @@ function init(app, Market){
 	var multer = require('multer');
 	var randomString = require('randomstring');
 	var upload = multer({
-		dest : '../public/images/',
+		dest : './public/photos/',
 		rename : function(fieldname, filename){
 			return 'thumbnails_' + filename;
 		}
@@ -12,7 +12,7 @@ function init(app, Market){
 		var market = new Market({
 			_id : randomString.generate(15),
 			name : req.param('name'),
-			thumbnail : "/images/" + req.files[0].filename,
+			thumbnail : "/photos/" + req.files[0].filename,
 			location : {
 				lat : req.param('lat'),
 				lng : req.param('lng')

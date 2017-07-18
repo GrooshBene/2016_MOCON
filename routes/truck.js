@@ -1,7 +1,7 @@
 function init(app, Truck, Goods){
 	var multer = require('multer');
 	var upload = multer({
-		dest : '../public/images/',
+		dest : './public/photos/',
 		rename : function(fieldname, filename){
 			return 'thumbnails_' + filename;
 		}
@@ -11,7 +11,7 @@ function init(app, Truck, Goods){
 			_id : randomString.generate(15),
 			name : req.param('name'),
 			truck : req.param('truck_id'),
-			thumbnail : "/images/" + req.files[0].filename,
+			thumbnail : "/photos/" + req.files[0].filename,
 			description : req.param('description'),
 			price : req.param('price')
 		});

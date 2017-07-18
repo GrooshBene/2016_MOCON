@@ -1,4 +1,5 @@
 function init(app, User, Bucket){
+	var randomString = require('randomstring');
 	app.post('/bucket/add', function(req, res){
 		var bucket = new Bucket({
 			_id : randomString.generate(15),

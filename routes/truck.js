@@ -1,4 +1,5 @@
 function init(app, Truck, Goods){
+	var randomString = require('randomstring');
 	var multer = require('multer');
 	var upload = multer({
 		dest : './public/photos/',

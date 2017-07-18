@@ -23,6 +23,16 @@ function init(app, Truck, Goods){
 		});
 	});
 
+	app.post('/truck/:id', function(req, res){
+		Truck.findOne({_id : req.param('id')}, function(err, result){
+			if(err){
+				res.send(401, "/truck/:id DB Search Error");
+				console.log(err);
+			}
+			res.send(200, result);
+		})
+	})
+
 	app.post('/truck/goods', function(req, res){
 		Truck.findOne({_id : req.param('id')}, function(err, result){
 			if(err){

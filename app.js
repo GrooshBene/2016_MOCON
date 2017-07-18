@@ -31,6 +31,7 @@ var UserSchema = new schema({
 var MarketSchema = new schema({
 	_id : String,
 	name : String,
+	thumbnail : String,
 	location : Object,
 	goods_type : String,
 	open_type : String,

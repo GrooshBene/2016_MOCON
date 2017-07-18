@@ -1,8 +1,6 @@
 # 2017_MOCON
 두부딱
 
-==========
-
 ## Database Schema
 -------------------
 
@@ -59,6 +57,23 @@
 
 > location : 위치정보입니다. Object
 
+### Market Schema
+
+> _id : String, 시장의 고유 식별번호입니다.
+
+> name : String, 시장의 이름입니다.
+
+> location : Object{lat, lng}, 시장의 위치입니다. 위도 경도값을 가집니다.
+
+> goods_type : String, 판매 상품의 종류입니다.
+
+> open_type : String, 주중에 시장이 여는 기간을 의미합니다.
+
+> parking_lot : Number(0,1) : 주차장 존재 여부를 나타냅니다.
+
+> toilet : Number(0,1) : 화장실 존재 여부를 나타냅니다.
+
+> thumbnail : String, 시장의 썸네일 url입니다.
 
 ##API Docs
 --------------
@@ -68,6 +83,8 @@
 >리퀘스트 파라미터
 
 >> access_token : 페이스북 인증 토큰입니다. Facebook SDK의 로그인 버튼을 통해 추출해낼 수 있습니다.
+
+>> address : 사용자의 주소입니다.
 
 >응답
 
@@ -139,6 +156,7 @@
 >> truck_id : 트럭의 아이디값입니다.
 >> description : 상품의 설명입니다.
 >> price : 상품의 가격입니다.
+>> thumbnail (File param) : 상품의 썸네일입니다.
 
 >응답
 
@@ -166,3 +184,53 @@
 >응답
 
 >> Truck Goods Array
+
+* /truck/list : 트럭의 리스트를 가져옵니다.
+
+>리퀘스트 파라미터
+
+>> 없음
+
+>응답
+
+>> Truck Schema Array
+
+* /market/add : 장터를 추가합니다.
+
+>리퀘스트 파라미터
+>
+>> name : 이름
+>> thumbnail (File Param) : 썸네일
+>> lat : 위도
+>> lng : 경도
+>> goods_type : 판매 상품 종류
+>> open_type : 오픈시간
+>> parking_lot : 주차장 유무
+>> toilet : 화장실 유무
+
+>응답
+>
+>> Created Market Schema
+
+* /market/info : 장터의 단일 정보를 가져옵니다.
+
+>리퀘스트 파라미터
+
+>> market_id : 검색할 장터의 고유 식별번호입니다.
+
+>응답
+
+>> Searched Market Schema
+
+* /market/list : 장터의 목록을 가져옵니다.
+
+>리퀘스트 파라미터
+
+>> 없음
+
+>응답
+
+>> Market Schema Array
+
+
+

@@ -51,7 +51,23 @@ function init(app, Truck, Goods){
 			credit_purchase : req.param('credit_purchase'),
 			goods : []
 		});
+		truck.save(function(err){
+			if(err){
+				console.log(err);
+				res.send(401, "/truck/add DB Saving Error");
+			}
+			res.send(200, truck);
+		})
 	});
+	app.post('/truck/list', function(req, res){
+		Truck.find({}, function(err, result){
+			if(err){
+				console.log(err);
+				res.send(401, "/truck/list DB Finding Error");
+			}
+			res.send(200, truck);
+		})
+	})
 
 }
 module.exports = init;

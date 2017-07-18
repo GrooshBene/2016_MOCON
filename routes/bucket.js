@@ -36,10 +36,10 @@ function init(app, User, Bucket){
 	});
 
 	app.post('/bucket/destroy', function(req,res){
-		Bucket.findOneAndRemove({_id : req.param('bucket_id')}, function(err, result){
+		User.findOneAndUpdate({_id : "user_id"}, {bucket : "", $push : {purchase_history : req.param('bucket_id')}}).exec(function(err, result){
 			if(err){
 				console.log(err);
-				res.send(401, "/bucket/destroy DB Error");
+				res.send(401, "/bucket/destroy DB Updating Error");
 			}
 			res.send(200, result);
 		});

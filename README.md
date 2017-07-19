@@ -175,7 +175,7 @@
 
 >> Created Truck Object
 
-* /truck/goods : 트럭에서 판매하는 상품을 조회합니다.
+* /truck/:id : 트럭에서 판매하는 상품을 조회합니다. GET
 
 >리퀘스트 파라미터
 
@@ -183,7 +183,7 @@
 
 >응답
 
->> Truck Goods Array
+>> Truck Schema
 
 * /truck/list : 트럭의 리스트를 가져옵니다.
 

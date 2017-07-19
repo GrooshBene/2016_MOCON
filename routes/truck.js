@@ -43,7 +43,7 @@ function init(app, Truck, Goods){
 
 	
 
-	app.get('/truck/add', function(req, res){
+	app.post('/truck/add', function(req, res){
 		console.log('asdf');
 		var truck = new Truck({
 			_id : randomString.generate(15),

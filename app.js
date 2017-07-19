@@ -59,7 +59,8 @@ var GoodsSchema = new schema({
 	price : Number
 });
 
-var TruckSchema = new schema({
+
+var CarSchema = new schema({
 	_id : String,
 	name : String,
 	goods_type : String,
@@ -70,7 +71,7 @@ var TruckSchema = new schema({
 		ref : 'goods'
 	}],
 	location : Object
-});
+})
 
 mongoose.connect("mongodb://localhost:27017/mocon", function(err){
 	if(err){
@@ -82,8 +83,8 @@ mongoose.connect("mongodb://localhost:27017/mocon", function(err){
 var User = mongoose.model('users', UserSchema);
 var Bucket = mongoose.model('buckets', BucketSchema);
 var Goods = mongoose.model('goods', GoodsSchema);
-var Truck = mongoose.model('trucks', TruckSchema);
 var Market = mongoose.model('markets', MarketSchema);
+var Truck = mongoose.model('cars', CarSchema);
 
 
 // view engine setup

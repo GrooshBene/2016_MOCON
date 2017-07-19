@@ -50,7 +50,8 @@ function init(app, Truck, Goods){
 		});
 	});
 
-	app.post('/truck/add', function(req, res){
+	app.get('/truck/add', function(req, res){
+		console.log('asdf');
 		var truck = new Truck({
 			_id : randomString.generate(15),
 			name : req.param('name'),

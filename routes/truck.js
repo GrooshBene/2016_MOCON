@@ -65,6 +65,15 @@ function init(app, Truck, Goods){
 			res.send(200, truck);
 		})
 	});
+	app.post('/truck/update/loc', function(req, res){
+		Truck.findOneAndUpdate({_id : req.param('truck_id')}, {location :{lat : req.param('lat'), lng : req.param('lng')}}, {new : true}, function(err, result){
+			if(err){
+				console.log(err);
+				res.send(401, "/truck/add DB Saving Error");
+			}
+			res.send(200, result);
+		})
+	})
 	app.post('/truck/list', function(req, res){
 		Truck.find({}, function(err, result){
 			if(err){

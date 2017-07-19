@@ -21,7 +21,7 @@ function init(app, Truck, Goods){
 				res.send(401, "/truck/add/goods DB Error");
 				console.log(err);
 			}
-			Truck.findOneAndUpdate({_id : req.param('truck_id')}, {$push : {goods : goods._id}}, function(err, result){
+			Truck.findOneAndUpdate({_id : req.param('truck_id')}, {$push : {goods : goods._id}}, {new : true},function(err, result){
 				if(err){
 					res.send(401, "/truck/add/goods Update DB Error");
 					console.log(err);
@@ -31,24 +31,17 @@ function init(app, Truck, Goods){
 		});
 	});
 
-	app.post('/truck/:id', function(req, res){
-		Truck.findOne({_id : req.param('id')}, function(err, result){
+	app.get('/truck/:id', function(req, res){
+		Truck.findOne({_id : req.param('id')}).populate('goods').exec(function(err, result){
 			if(err){
 				res.send(401, "/truck/:id DB Search Error");
 				console.log(err);
 			}
 			res.send(200, result);
-		})
-	})
-
-	app.post('/truck/goods', function(req, res){
-		Truck.findOne({_id : req.param('id')}, function(err, result){
-			if(err){
-				res.send(401, "/truck/goods DB Search Error");
-			}
-			res.send(200, result.goods);
 		});
 	});
+
+	
 
 	app.get('/truck/add', function(req, res){
 		console.log('asdf');
@@ -59,7 +52,10 @@ function init(app, Truck, Goods){
 			inapp_purchase : req.param('inapp_purchase'),
 			credit_purchase : req.param('credit_purchase'),
 			goods : [],
-			location : {}
+			location : {
+				lat : "",
+				lng : ""
+			}
 		});
 		truck.save(function(err){
 			if(err){
@@ -75,7 +71,7 @@ function init(app, Truck, Goods){
 				console.log(err);
 				res.send(401, "/truck/list DB Finding Error");
 			}
-			res.send(200, truck);
+			res.send(200, result);
 		})
 	})
 

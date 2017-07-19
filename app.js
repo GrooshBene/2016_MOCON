@@ -70,7 +70,10 @@ var CarSchema = new schema({
 		type : String,
 		ref : 'goods'
 	}],
-	location : Object
+	location : {
+		lat : String,
+		lng : String
+	}
 })
 
 mongoose.connect("mongodb://localhost:27017/mocon", function(err){
